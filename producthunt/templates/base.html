@@ -57,8 +57,25 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav ml-auto">
-          <a class="nav-item nav-link" href="#">Log In</a>
-          <a class="nav-item nav-link" href="">Sign Up</a>
+          {% if user.is_authenticated %}
+          <div class="dropdown show">
+            <a class="nav-item nav-link dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{user}}</a>
+
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+              <a class="dropdown-item" href="#">Your Profile</a>
+              <a class="dropdown-item" href="#">Your Products</a>
+              <a class="dropdown-item" href="javascript:{document.getElementById('logout').submit()}">Log Out</a>
+              <form id="logout" action="{% url 'logout' %}" method="POST">
+                {% csrf_token %}
+                <input type="hidden"/>
+              </form>
+              {% else %}
+              <a class="nav-item nav-link" href="{% url 'login' %}">Log In</a>
+              <a class="nav-item nav-link" href="{% url 'signup' %}">Sign Up</a>
+              {% endif %}
+            </div>
+          </div>
+
         </div>
       </div>
       </div>
