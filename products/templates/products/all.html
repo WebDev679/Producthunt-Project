@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <div class="album py-5 bg-light">
+    <div class="container">
+      <div class="row">
+        {% if products %}
+        {% for product in products %}
+        <div class="col-md-4">
+          <div class="card mb-4 shadow-sm">
+            <img class="bd-placeholder-img card-img-top" src = "{{product.icon.url}}" height = "200px" />
+            <div class="card-body">
+            <p class="card-text" ><a style="color:black;" href="{{product.id}}">{{ product.title }}</a></p>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+        </div>
+      </div>
+    </div>
+
+        {% else %}
+        <h3 class="text-center" style="color:red;">You have no Products <a href="{% url 'create' %}">Create One here.</a></h3>
+        {% endif %}
+
+{% endblock %}

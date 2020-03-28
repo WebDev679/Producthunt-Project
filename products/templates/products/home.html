@@ -1,5 +1,55 @@
 {% extends 'base.html' %}
 
 {% block content %}
-Home Page
+
+<h1 class="text-center">Product Hunt</h1>
+<br>
+<br>
+<br>
+{% if user.is_authenticated %}
+<h4>Find a Product you would like and upvote it or make yur own product for people to look at it.</h4>
+{% else %}
+<h4>Find a Product you would like and upvote it or make yur own product for people to look at it.</h4>
+<h4 class="text-center"><a href="{% url 'signup' %}">Sign Up </a>for free to begin.</h4>
+{% endif %}
+<br>
+<br>
+<br>
+<br>
+<br>
+{% for product in products %}
+<div class="row">
+  <div class="col-2">
+    <img src="{{product.image.url}}" alt="" class="img-fluid">
+  </div>
+  <div class="col-6">
+    <a href="{% url 'product' product.id %}"><h1>{{product.title}}</h1></a>
+    <p>{{product.summary}} ..... </p>
+  </div>
+  {% if user.is_authenticated %}
+  <div class="col-4">
+    <a href="javascript:{document.getElementById('upvote{{product.id}}').submit()}"><button class="btn btn-primary btn-lg btn-block" type="button" name="upvote"><span class="oi oi-caret-top"></span> Upvote {{product.votes_total}}</button></a>
+    <form id="upvote{{product.id}}" action="{% url 'product' product.id %}" method="POST">
+      {% csrf_token %}
+      <input type="hidden" />
+    </form>
+  </div>
+  {% else %}
+  <div class="col-4">
+    <p id="error_upvote" style="color:red;"></p>
+    <button class="btn btn-primary btn-lg btn-block" type="button" name="upvote" style="cursor:not-allowed" onclick="login_neccessary()" ><span class="oi oi-caret-top"></span> Upvote {{product.votes_total}}</button>
+  </div>
+  {% endif %}
+  </div>
+
+
+<script type="text/javascript">
+
+  function login_neccessary(){
+    error_message = 'Login to Upvote a Product';
+    document.getElementById('error_upvote').innerHTML = error_message;
+
+</script>
+{% endfor %}
+
 {% endblock %}

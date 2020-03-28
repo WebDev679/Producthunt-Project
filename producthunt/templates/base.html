@@ -5,16 +5,14 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="">
-  <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
-  <meta name="generator" content="Jekyll v3.8.6">
+
   <title>Product Hunt</title>
 
   <link rel="canonical" href="https://getbootstrap.com/docs/4.4/examples/album/">
 
   <!-- Bootstrap core CSS -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-
+  <link rel="stylesheet" href="{% static 'open-iconic-master/font/css/open-iconic-bootstrap.css' %}">
   <!-- Favicons -->
   <link rel="apple-touch-icon" href="/docs/4.4/assets/img/favicons/apple-touch-icon.png" sizes="180x180">
   <link rel="icon" href="/docs/4.4/assets/img/favicons/favicon-32x32.png" sizes="32x32" type="image/png">
@@ -59,11 +57,12 @@
         <div class="navbar-nav ml-auto">
           {% if user.is_authenticated %}
           <div class="dropdown show">
-            <a class="nav-item nav-link dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{user}}</a>
+            <a class="nav-item nav-link dropdown-toggle" href="" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{user}}</a>
 
             <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-              <a class="dropdown-item" href="#">Your Profile</a>
-              <a class="dropdown-item" href="#">Your Products</a>
+              <a class="dropdown-item" href="">Your Profile</a>
+              <a class="dropdown-item" href="{% url 'all' %}">Your Products</a>
+              <a class="dropdown-item" href="{% url 'create' %}" >Create a Product</a>
               <a class="dropdown-item" href="javascript:{document.getElementById('logout').submit()}">Log Out</a>
               <form id="logout" action="{% url 'logout' %}" method="POST">
                 {% csrf_token %}
@@ -88,6 +87,12 @@
   {% endblock %}
 
 </div>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 
   <footer class="text-muted ">
     <div class="container text-center">
