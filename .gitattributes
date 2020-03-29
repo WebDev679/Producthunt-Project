@@ -1,0 +1,6 @@
+
+
+      producthunt/static/* linguist-vendored
+      products/templates/products/* linguist-vendored
+      accounts/templates/products/* linguist-vendored
+      producthunt/templates/* linguist-vendored
