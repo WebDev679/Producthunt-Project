@@ -1,6 +1,6 @@
 
 
-      producthunt/static/* linguist-vendored
+      producthunt/static/open-iconic-master* linguist-vendored
       products/templates/products/* linguist-vendored
       accounts/templates/products/* linguist-vendored
       producthunt/templates/* linguist-vendored
